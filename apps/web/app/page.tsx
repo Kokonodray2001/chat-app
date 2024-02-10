@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSocket } from "../context/SocketProvider";
 
 export default function Page() {
-  const { sendMessage } = useSocket();
+  const { sendMessage, messages } = useSocket();
   const [message, setMessage] = useState("");
   return (
     <div className='flex flex-col'>
@@ -11,6 +11,13 @@ export default function Page() {
         <span className='font-bold text-2xl p-2'>
           All Messages will appear here
         </span>
+        <div>
+          <ul>
+            {messages.map((message) => (
+              <li>{message}</li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className='flex items-center'>
         <input
