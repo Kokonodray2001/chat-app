@@ -31,7 +31,6 @@ class SocketService {
   public initListeners() {
     const io = this.io;
     console.log("init socket listener ... ");
-
     io.on("connect", (socket) => {
       console.log("connection established", socket.id);
 
