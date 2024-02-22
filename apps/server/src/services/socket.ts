@@ -33,12 +33,19 @@ class SocketService {
     console.log("init socket listener ... ");
     io.on("connect", (socket) => {
       console.log("connection established", socket.id);
-
+      //emit private message to desired client - PCQcZJ_LQEtPT58tAAAF
       socket.on("event:message", async ({ message }: { message: string }) => {
         console.log("New Message Rec .", message);
         //publish this message to redis
         await pub.publish("MESSAGE", JSON.stringify({ message }));
       });
+      // socket.on('private message', ({ recipientId, message }) => {
+      // Send the message to the specific socket ID
+      // io.to(socket.id).emit("private message", {
+      //   senderId: socket.id,
+      //   message: `private for u ${socket.id}`,
+      // });
+      // });
     });
 
     sub.on("message", async (channel, message) => {

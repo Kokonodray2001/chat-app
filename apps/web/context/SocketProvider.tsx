@@ -39,6 +39,12 @@ export const SocketProvider: React.FC<SocketProviderProp> = ({ children }) => {
   useEffect(() => {
     const _socket = io("http://localhost:8000"); // server address
     _socket.on("message", onMessageRec);
+    // _socket.on("private message", (data) => {
+    //   // Handle the received private message
+    //   console.log(
+    //     "Received private message from " + data.senderId + ": " + data.message
+    //   );
+    // });
     _socket.on("connect", () => {
       console.log("Connected to server");
       //     _socket.emit("event:message", { message: "Hello from the client!" });
